@@ -379,10 +379,3 @@ async def chat_watcher_func(_, message):
             send = await message.reply_text(msg, disable_web_page_preview=True)
         except:
             return
-
-
-
-
-
-
-
