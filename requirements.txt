@@ -52,3 +52,4 @@ cloudscraper
 pycryptodome
 opencv-python
 SafoneAPI
+img2pdf
