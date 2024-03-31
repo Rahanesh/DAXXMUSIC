@@ -51,11 +51,11 @@ from DAXXMUSIC.utils.database import get_assistant, is_active_chat
 
 
 random_photo = [
-    "https://telegra.ph/file/1949480f01355b4e87d26.jpg",
-    "https://telegra.ph/file/3ef2cc0ad2bc548bafb30.jpg",
-    "https://telegra.ph/file/a7d663cd2de689b811729.jpg",
-    "https://telegra.ph/file/6f19dc23847f5b005e922.jpg",
-    "https://telegra.ph/file/2973150dd62fd27a3a6ba.jpg",
+    "https://iranbanou.com/wp-content/uploads/2020/04/iranbanou20040836.jpg",
+    "https://iranbanou.com/wp-content/uploads/2019/07/iranbanou1907275.jpg",
+    "https://iranbanou.com/wp-content/uploads/2019/08/iranbanou1908129-5.jpg",
+    "https://iranbanou.com/wp-content/uploads/2017/07/Iranian-girl-choose-the-most-beautiful-views-of-an-Arabic-magazine-photos2-Copy.jpg",
+    "https://delbaraneh.com/wp-content/uploads/2021/04/%D8%AA%D8%B5%D8%A7%D9%88%DB%8C%D8%B1-%D8%AF%D8%AE%D8%AA%D8%B1-%D8%A8%DA%86%D9%87-%D8%AE%D8%A7%D8%B1%D8%AC%DB%8C-2.jpg",
 ]
 # --------------------------------------------------------------------------------- #
 
@@ -194,13 +194,13 @@ async def greet_new_member(_, member: ChatMemberUpdated):
                 member.chat.id,
                 photo=welcomeimg,
                 caption=f"""
-**❅────✦ ᴡᴇʟᴄᴏᴍᴇ ✦────❅**
+**❅────✦ خوش آمدید ✦────❅**
 
 ▰▰▰▰▰▰▰▰▰▰▰▰▰
-**➻ ɴᴀᴍᴇ »** {user.mention}
-**➻ ɪᴅ »** `{user.id}`
-**➻ ᴜ_ɴᴀᴍᴇ »** @{user.username}
-**➻ ᴛᴏᴛᴀʟ ᴍᴇᴍʙᴇʀs »** {count}
+**➻ نام »** {user.mention}
+**➻ آیدی »** `{user.id}`
+**➻ نام کاربری »** @{user.username}
+**➻ اعضای کل »** {count}
 ▰▰▰▰▰▰▰▰▰▰▰▰▰
 
 **❅─────✧❅✦❅✧─────❅**
@@ -218,7 +218,7 @@ async def greet_new_member(_, member: ChatMemberUpdated):
 async def add_all(client, message):
     command_parts = message.text.split(" ")
     if len(command_parts) != 2:
-        await message.reply("**⚠️ ɪɴᴠᴀʟɪᴅ ᴄᴏᴍᴍᴀɴᴅ ғᴏʀᴍᴀᴛ. ᴘʟᴇᴀsᴇ ᴜsᴇ ʟɪᴋᴇ » `/gadd bot username`**")
+        await message.reply("**⚠️ فرمت دستور نامعتبر است. لطفاً از این فرمت استفاده کنید: `/gadd bot username`**")
         return
 
     bot_username = command_parts[1]
@@ -228,26 +228,26 @@ async def add_all(client, message):
         app_id = bot.id
         done = 0
         failed = 0
-        lol = await message.reply("🔄 **ᴀᴅᴅɪɴɢ ɢɪᴠᴇɴ ʙᴏᴛ ɪɴ ᴀʟʟ ᴄʜᴀᴛs!**")
+        lol = await message.reply("🔄 **در حال اضافه کردن ربات مشخص شده به تمام گروه‌ها!**")
 
         async for dialog in userbot.get_dialogs():
-            if dialog.chat.id == -1002133369721:
+            if dialog.chat.id == -1001632476447:
                 continue
             try:
                 await userbot.add_chat_members(dialog.chat.id, app_id)
                 done += 1
                 await lol.edit(
-                    f"**🔂 ᴀᴅᴅɪɴɢ {bot_username}**\n\n**➥ ᴀᴅᴅᴇᴅ ɪɴ {done} ᴄʜᴀᴛs ✅**\n**➥ ғᴀɪʟᴇᴅ ɪɴ {failed} ᴄʜᴀᴛs ❌**\n\n**➲ ᴀᴅᴅᴇᴅ ʙʏ»** @{userbot.username}"
+                    f"**🔂 اضافه کردن {bot_username}**\n\n**➥ در {done} گروه اضافه شد ✅**\n**➥ در {failed} گروه ناموفق بود ❌**\n\n**➲ اضافه شده توسط»** @{userbot.username}"
                 )
             except Exception as e:
                 failed += 1
                 await lol.edit(
-                    f"**🔂 ᴀᴅᴅɪɴɢ {bot_username}**\n\n**➥ ᴀᴅᴅᴇᴅ ɪɴ {done} ᴄʜᴀᴛs ✅**\n**➥ ғᴀɪʟᴇᴅ ɪɴ {failed} ᴄʜᴀᴛs ❌**\n\n**➲ ᴀᴅᴅɪɴɢ ʙʏ»** @{userbot.username}"
+                    f"**🔂 اضافه کردن {bot_username}**\n\n**➥ در {done} گروه اضافه شد ✅**\n**➥ در {failed} گروه ناموفق بود ❌**\n\n**➲ اضافه شده توسط»** @{userbot.username}"
                 )
-            await asyncio.sleep(3)  # Adjust sleep time based on rate limits
+            await asyncio.sleep(3)  # تنظیم زمان خواب بر اساس محدودیت‌های نرخ
 
         await lol.edit(
-            f"**➻ {bot_username} ʙᴏᴛ ᴀᴅᴅᴇᴅ sᴜᴄᴄᴇssғᴜʟʟʏ🎉**\n\n**➥ ᴀᴅᴅᴇᴅ ɪɴ {done} ᴄʜᴀᴛs ✅**\n**➥ ғᴀɪʟᴇᴅ ɪɴ {failed} ᴄʜᴀᴛs ❌**\n\n**➲ ᴀᴅᴅᴇᴅ ʙʏ»** @{userbot.username}"
+            f"**➻ ربات {bot_username} با موفقیت اضافه شد🎉**\n\n**➥ در {done} گروه اضافه شد ✅**\n**➥ در {failed} گروه ناموفق بود ❌**\n\n**➲ اضافه شده توسط»** @{userbot.username}"
         )
     except Exception as e:
         await message.reply(f"Error: {str(e)}")
