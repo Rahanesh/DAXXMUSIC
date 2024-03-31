@@ -1,27 +1,27 @@
-from DAXXMUSIC import app 
+from DAXXMUSIC import app
 import requests as r
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup 
-from pyrogram import filters 
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+from pyrogram import filters
 
 API_URL = "https://sugoi-api.vercel.app/search"
 
-@app.on_message(filters.command("bingsearch"))
+# تعریف دستور برای بررسی کلمات "بینگ" و "bingsearch"
+@app.on_message(filters.command(["بینگ", "bingsearch"]))
 async def bing_search(michiko, message):
     try:
         if len(message.command) == 1:
-            await message.reply_text("Please provide a keyword to search.")
+            await message.reply_text("❓لطفاً یک کلمه کلیدی برای جستجو وارد کنید.")
             return
 
-        keyword = " ".join(
-            message.command[1:]
-        )  # Assuming the keyword is passed as arguments
+        # استخراج کلمه کلیدی از پیام
+        keyword = " ".join(message.command[1:])
         params = {"keyword": keyword}
         response = r.get(API_URL, params=params)
 
         if response.status_code == 200:
             results = response.json()
             if not results:
-                await message.reply_text("No results found.")
+                await message.reply_text("نتیجه‌ای یافت نشد♨️")
             else:
                 message_text = ""
                 for result in results[:7]:
@@ -30,6 +30,6 @@ async def bing_search(michiko, message):
                     message_text += f"{title}\n{link}\n\n"
                 await message.reply_text(message_text.strip())
         else:
-            await message.reply_text("Sorry, something went wrong with the search.")
+            await message.reply_text("متاسفانه مشکلی در جستجو رخ داده است🥲")
     except Exception as e:
-        await message.reply_text(f"An error occurred: {str(e)}")
+        await message.reply_text(f"یک خطا رخ داده است: {str(e)}")
