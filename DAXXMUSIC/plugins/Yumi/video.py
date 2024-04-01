@@ -1,5 +1,3 @@
-import future
-
 import asyncio
 import os
 import time
@@ -34,7 +32,7 @@ def get_text(message: Message) -> [None, str]:
         return None
 
 
-@app.on_message(filters.command(["yt", "video"]))
+@app.on_message(filters.command(["yt", "ویدیو"]))
 async def ytmusic(client, message: Message):
     urlissed = get_text(message)
     await message.delete()
@@ -42,10 +40,10 @@ async def ytmusic(client, message: Message):
     user_name = message.from_user.first_name
     chutiya = "[" + user_name + "](tg://user?id=" + str(user_id) + ")"
 
-    pablo = await client.send_message(message.chat.id, f"sᴇᴀʀᴄʜɪɴɢ, ᴩʟᴇᴀsᴇ ᴡᴀɪᴛ...")
+    pablo = await client.send_message(message.chat.id, f"در حال جستجو، لطفاً صبر کنید...")
     if not urlissed:
         await pablo.edit(
-            "😴 sᴏɴɢ ɴᴏᴛ ғᴏᴜɴᴅ ᴏɴ ʏᴏᴜᴛᴜʙᴇ.\n\n» ᴍᴀʏʙᴇ ᴛᴜɴᴇ ɢᴀʟᴛɪ ʟɪᴋʜᴀ ʜᴏ, ᴩᴀᴅʜᴀɪ - ʟɪᴋʜᴀɪ ᴛᴏʜ ᴋᴀʀᴛᴀ ɴᴀʜɪ ᴛᴜ !"
+            "😴 آهنگی در یوتیوب پیدا نشد.\n\n» شاید تونی اشتباه نوشتی، درس خوانده‌ای - نوشتن هم کارت نیست!"
         )
         return
 
@@ -79,11 +77,11 @@ async def ytmusic(client, message: Message):
             ytdl_data = ytdl.extract_info(url, download=True)
 
     except Exception as e:
-        await pablo.edit(f"**ғᴀɪʟᴇᴅ ᴛᴏ ᴅᴏᴡɴʟᴏᴀᴅ.** \n**ᴇʀʀᴏʀ :** `{str(e)}`")
+        await pablo.edit(f"**خطا در دانلود.** \n**خطا :** `{str(e)}`")
         return
     c_time = time.time()
     file_stark = f"{ytdl_data['id']}.mp4"
-    capy = f"❄ **ᴛɪᴛʟᴇ :** [{thum}]({mo})\n💫 **ᴄʜᴀɴɴᴇʟ :** {thums}\n✨ **sᴇᴀʀᴄʜᴇᴅ :** {urlissed}\n🥀 **ʀᴇǫᴜᴇsᴛᴇᴅ ʙʏ :** {chutiya}"
+    capy = f"❄ **عنوان :** [{thum}]({mo})\n💫 **کانال :** {thums}\n✨ **جستجو شده :** {urlissed}\n🥀 **درخواست شده توسط :** {chutiya}"
     await client.send_video(
         message.chat.id,
         video=open(file_stark, "rb"),
@@ -95,7 +93,7 @@ async def ytmusic(client, message: Message):
         progress_args=(
             pablo,
             c_time,
-            f"» ᴩʟᴇᴀsᴇ ᴡᴀɪᴛ...\n\nᴜᴩʟᴏᴀᴅɪɴɢ `{urlissed}` ғʀᴏᴍ ʏᴏᴜᴛᴜʙᴇ sᴇʀᴠᴇʀs...💫",
+            f"» لطفاً صبر کنید...\n\nدر حال آپلود `{urlissed}` از سرورهای یوتیوب...💫",
             file_stark,
         ),
     )
@@ -105,7 +103,7 @@ async def ytmusic(client, message: Message):
             os.remove(files)
 
 
-__mod_name__ = "Vɪᴅᴇᴏ"
+__mod_name__ = "ویدیو"
 __help__ = """ 
-/video to download video song
-/yt to download video song """
+/ویدیو برای دانلود ویدیویی
+/yt برای دانلود ویدیویی """
