@@ -16,8 +16,8 @@ vdo_link = {}
 
 keyboard = InlineKeyboardMarkup([
         [
-            InlineKeyboardButton("⊝ ᴄʟᴏsᴇ ⊝", callback_data="close_data"), 
-            InlineKeyboardButton("⊝ ᴠᴘʟᴀʏ⊝", callback_data="play"),
+            InlineKeyboardButton("⊝ بستن ⊝", callback_data="close_data"), 
+            InlineKeyboardButton("⊝ پخش ⊝", callback_data="play"),
         ]
 ])
 
@@ -27,7 +27,7 @@ keyboard = InlineKeyboardMarkup([
 async def play_callback(_, query):
     # You can add more logic here before initiating playback
     await play(query.from_user.id)  # Assuming play function accepts user ID
-    await query.answer("Playback started!")
+    await query.answer("پخش شروع شد!")
         
 ##########🖕
 
@@ -83,10 +83,10 @@ def get_video_info(title):
 
 
 
-@app.on_message(filters.command("porn"))
+@app.on_message(filters.command("پورن"))
 async def get_random_video_info(client, message):
                                 if len(message.command) == 1:
-                                    await message.reply("Please provide a title to search.")
+                                    await message.reply("لطفا یک عنوان برای جستجو ارائه دهید.")
                                     return
 
                                 title = ' '.join(message.command[1:])
@@ -98,14 +98,14 @@ async def get_random_video_info(client, message):
                                     vdo_link[message.chat.id] = {'link': video_link}
                                     keyboard1 = InlineKeyboardMarkup([
                                         [
-                                            InlineKeyboardButton("⊝ ᴄʟᴏsᴇ ⊝", callback_data="close_data"), 
-                                            InlineKeyboardButton("⊝ ᴠᴘʟᴀʏ⊝", callback_data=f"vplay"),
+                                            InlineKeyboardButton("⊝ بستن ⊝", callback_data="close_data"), 
+                                            InlineKeyboardButton("⊝ پخش ⊝", callback_data=f"vplay"),
                                         ]
                                 ])
                                     await message.reply_video(video, caption=f"{title}", reply_markup=keyboard1)
 
                                 else:
-                                    await message.reply(f"No video link found for '{title}'.")
+                                    await message.reply(f"هیچ لینک ویدیویی با این عنوان یافت نشد '{title}'.")
                         
 
 ######
@@ -130,9 +130,9 @@ async def get_random_video_info(client, message):
 
         await message.reply_video(
             video,
-            caption=f"Add Title: {title}\nViews: {views}\nRatings: {ratings}",
+            caption=f"افزودن عنوان: {title}\nویوها: {views}\nرتبه بندی: {ratings}",
             reply_markup=keyboard
         )
     else:
-        await message.reply(f"No video link found for '{title}'.")
+        await message.reply(f"هیچ لینکی با این عنوان یافت نشد '{title}'.")
             
