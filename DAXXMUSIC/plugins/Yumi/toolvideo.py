@@ -37,7 +37,7 @@ def convert_video_to_text_cmd(_, message: Message):
     
     # -------------------------------------
     
-@app.on_message(filters.command("remove", prefixes="/") & filters.reply)
+@app.on_message(filters.command(["remove", "حذف"], prefixes="/") & filters.reply)
 def remove_media(client, message: Message):
     # Fetching the replied message
     replied_message = message.reply_to_message
@@ -46,7 +46,7 @@ def remove_media(client, message: Message):
         # If the replied message is a video, remove either the audio or the video depending on the command
         if len(message.command) > 1:
             command = message.command[1].lower()
-            if command == "audio":
+            if command == "صدا" or command == "audio":
                 # Remove audio
                 file_path = app.download_media(replied_message.video)
                 audio = AudioSegment.from_file(file_path)
@@ -55,7 +55,7 @@ def remove_media(client, message: Message):
                 app.send_audio(message.chat.id, "output.mp3")
                 os.remove(file_path)
                 os.remove("output.mp3")
-            elif command == "video":
+            elif command == "ویدیو" or command == "video":
                 # Remove video
                 file_path = app.download_media(replied_message.video)
                 os.system(f"ffmpeg -i {file_path} -c copy -an output.mp4")
@@ -63,9 +63,9 @@ def remove_media(client, message: Message):
                 os.remove(file_path)
                 os.remove("output.mp4")
             else:
-                app.send_message(message.chat.id, "Invalid command. Please use either /remove audio or /remove video.")
+                 app.send_message(message.chat.id, "دستور نامعتبر. لطفاً از /حذف صدا یا /حذف ویدیو استفاده کنید.")
         else:
-            app.send_message(message.chat.id, "Please specify whether to remove audio or video using /remove audio or /remove video.")
+            app.send_message(message.chat.id, "لطفاً مشخص کنید که صدا یا ویدیو با استفاده از /remove audio یا /remove video حذف شود.")
     else:
-        app.send_message(message.chat.id, "The replied message is not a video.")
+        app.send_message(message.chat.id, "پیام ارسال شده یک ویدیو نیست.")
         
