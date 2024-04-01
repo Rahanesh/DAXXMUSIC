@@ -1,12 +1,4 @@
-import os
-import time
-from asyncio import sleep
-from pyrogram import Client, filters
-from pyrogram import enums, filters
-
-from DAXXMUSIC import app
-
-@app.on_message(~filters.private & filters.command(["groupdata"]), group=2)
+@app.on_message(~filters.private & filters.command(["آمار گروه", "groupdata", "آمار گپ", "گپ"]))
 async def instatus(app, message):
     start_time = time.perf_counter()
     user = await app.get_chat_member(message.chat.id, message.from_user.id)
@@ -15,7 +7,7 @@ async def instatus(app, message):
         enums.ChatMemberStatus.ADMINISTRATOR,
         enums.ChatMemberStatus.OWNER,
     ):
-        sent_message = await message.reply_text("GETTING INFORMATION...")
+        sent_message = await message.reply_text("در حال دریافت اطلاعات...⌛️")
         deleted_acc = 0
         premium_acc = 0
         banned = 0
@@ -37,16 +29,16 @@ async def instatus(app, message):
         timelog = "{:.2f}".format(end_time - start_time)
         await sent_message.edit(f"""
 **➖➖➖➖➖➖➖
-➲ NAME : {message.chat.title} ✅
-➲ MEMBERS : [ {count} ]🫂
+➲ نام گروه : {message.chat.title} ✅
+➲ تعداد اعضا : [ {count} ]🫂
 ➖➖➖➖➖➖➖
-➲ BOTS : {bot}💡
-➲ ZOMBIES : {deleted_acc}🧟
-➲ BANNED : {banned}🚫
-➲ PREMIUM USERS : {premium_acc}🎁
+➲ ربات‌ها : {bot}💡
+➲ حساب‌های حذف‌شده : {deleted_acc}🧟
+➲ افراد مسدود‌شده : {banned}🚫
+➲ افراد ویژه : {premium_acc}🎁
 ➖➖➖➖➖➖➖
-TIME TAKEN : {timelog} S**""")
+زمان لازم : {timelog} ثانیه**""")
     else:
-        sent_message = await message.reply_text("ONLY ADMINS CAN USE THIS !")
+        sent_message = await message.reply_text("فقط مدیران می‌توانند از این دستور استفاده کنند🚫")
         await sleep(5)
         await sent_message.delete()
