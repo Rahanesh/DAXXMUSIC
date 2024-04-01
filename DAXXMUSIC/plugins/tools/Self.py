@@ -1,10 +1,11 @@
 import os
 
-from .. import *
+from DAXXMUSIC import *
+from DAXXMUSIC import app
 from pyrogram import filters
 
 
-@app.on_message(commandz(["😋🥰", "op", "wow", "super", "😋😍"])
+@app.on_message((filters.command("😋🥰") | filters.command("op") | filters.command("wow") | filters.command("super") | filters.command("😋😍"))
     & filters.private & filters.me)
 async def self_media(client, message):
     replied = message.reply_to_message
