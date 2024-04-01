@@ -13,7 +13,7 @@ from config import BANNED_USERS, OWNER_ID
 
 
 
-@app.on_message(filters.command(["addsudo"], prefixes=["/", "!", "%", ",", "", ".", "@", "#"]) & filters.user(OWNER_ID))
+@app.on_message(filters.command(["addsudo", "افزودن سودو"], prefixes=["/", "!", "%", ",", "", ".", "@", "#"]) & filters.user(OWNER_ID))
 @language
 async def useradd(client, message: Message, _):
     if not message.reply_to_message:
@@ -30,7 +30,7 @@ async def useradd(client, message: Message, _):
         await message.reply_text(_["sudo_8"])
 
 
-@app.on_message(filters.command(["delsudo", "rmsudo"], prefixes=["/", "!", "%", ",", "", ".", "@", "#"]) & filters.user(OWNER_ID))
+@app.on_message(filters.command(["delsudo", "حذف سودو"], prefixes=["/", "!", "%", ",", "", ".", "@", "#"]) & filters.user(OWNER_ID))
 @language
 async def userdel(client, message: Message, _):
     if not message.reply_to_message:
@@ -48,36 +48,36 @@ async def userdel(client, message: Message, _):
 
 
 
-@app.on_message(filters.command(["sudolist", "listsudo", "sudoers"], prefixes=["/", "!", "%", ",", "", ".", "@", "#"]) & ~BANNED_USERS)
+@app.on_message(filters.command(["sudolist", "listsudo", "لیست سودو"], prefixes=["/", "!", "%", ",", "", ".", "@", "#"]) & ~BANNED_USERS)
 async def sudoers_list(client, message: Message):
-    keyboard = [[InlineKeyboardButton("๏ ᴠɪᴇᴡ sᴜᴅᴏʟɪsᴛ ๏", callback_data="check_sudo_list")]]
+    keyboard = [[InlineKeyboardButton("๏ نمایش لیست سودو ๏", callback_data="check_sudo_list")]]
     reply_markups = InlineKeyboardMarkup(keyboard)
   
-    #await message.reply_photo(photo="https://graph.org/file/ace6a4bcf3b08ae581845.mp4", caption="**» ᴄʜᴇᴄᴋ sᴜᴅᴏ ʟɪsᴛ ʙʏ ɢɪᴠᴇɴ ʙᴇʟᴏᴡ ʙᴜᴛᴛᴏɴ.**\n\n**» ɴᴏᴛᴇ:**  ᴏɴʟʏ sᴜᴅᴏ ᴜsᴇʀs ᴄᴀɴ ᴠɪᴇᴡ. ", reply_markup=reply_markups)
-    await message.reply_video(video="https://telegra.ph/file/aa6c9346a4491ce97276b.jpg", caption="**» ᴄʜᴇᴄᴋ sᴜᴅᴏ ʟɪsᴛ ʙʏ ɢɪᴠᴇɴ ʙᴇʟᴏᴡ ʙᴜᴛᴛᴏɴ.**\n\n**» ɴᴏᴛᴇ:**  ᴏɴʟʏ sᴜᴅᴏ ᴜsᴇʀs ᴄᴀɴ ᴠɪᴇᴡ. \n│ \n└» ᴍᴀᴅᴇ ʙʏ Evo^xᴅ 𓆩🇮🇳𓆪 ", reply_markup=reply_markups)
+    await message.reply_photo(photo="https://t.me/rahaneshsource/141", caption="**» لیست سودو را با استفاده از دکمه زیر بررسی کنید.**\n\n**» توجه:** تنها کاربران سودو می‌توانند مشاهده کنند.", reply_markup=reply_markups)
+    await message.reply_video(video="https://harfetaze.com/wp-content/uploads/2019/01/aks-profil-gitar-4.jpg", caption="**» لیست سودو را با استفاده از دکمه زیر بررسی کنید.**\n\n**» توجه:** تنها کاربران سودو می‌توانند مشاهده کنند.\n│ \n└» ساخته شده توسط دراگون𓆪 ", reply_markup=reply_markups)
     
 
 @app.on_callback_query(filters.regex("^check_sudo_list$"))
 async def check_sudo_list(client, callback_query: CallbackQuery):
     keyboard = []
     if callback_query.from_user.id not in SUDOERS:
-        return await callback_query.answer("𝐍𝐢𝐤𝐚𝐥 𝐑𝐚𝐧𝐝𝐢 𝐁𝐚𝐥𝐚 𝐒𝐮𝐝𝐨𝐥𝐢𝐬𝐭 𝐃𝐞𝐤𝐡𝐧𝐞 𝐀𝐚𝐲𝐚 𝐇𝐚𝐢 𝐛𝐚𝐝𝐚🖕😎😂", show_alert=True)
+        return await callback_query.answer("شرمنده دیگه دیر رسیدی تموم شد", show_alert=True)
     else:
         user = await app.get_users(OWNER_ID)
 
         user_mention = (user.first_name if not user.mention else user.mention)
-        caption = f"**˹ʟɪsᴛ ᴏғ ʙᴏᴛ ᴍᴏᴅᴇʀᴀᴛᴏʀs˼**\n\n**🌹Oᴡɴᴇʀ** ➥ {user_mention}\n\n"
+        caption = f"**˹لیست مدیران˼**\n\n**مالک** ➥ {user_mention}\n\n"
 
-        keyboard.append([InlineKeyboardButton("๏ ᴠɪᴇᴡ ᴏᴡɴᴇʀ ๏", url=f"tg://openmessage?user_id={OWNER_ID}")])
+        keyboard.append([InlineKeyboardButton("๏ ادمین ربات ๏", url=f"tg://openmessage?user_id={OWNER_ID}")])
         
         count = 1
         for user_id in SUDOERS:
             if user_id != OWNER_ID:
                 try:
                     user = await app.get_users(user_id)
-                    user_mention = user.mention if user else f"**🎁 Sᴜᴅᴏ {count} ɪᴅ:** {user_id}"
-                    caption += f"**🎁 Sᴜᴅᴏ** {count} **»** {user_mention}\n"
-                    button_text = f"๏ ᴠɪᴇᴡ sᴜᴅᴏ {count} ๏ "
+                    user_mention = user.mention if user else f"**🎁 سودو {count} ɪᴅ:** {user_id}"
+                    caption += f"**🎁 سودو** {count} **»** {user_mention}\n"
+                    button_text = f"๏ کاربران سودو {count} ๏ "
                     keyboard.append([InlineKeyboardButton(button_text, url=f"tg://openmessage?user_id={user_id}")]
                     )
                     count += 1
@@ -85,7 +85,7 @@ async def check_sudo_list(client, callback_query: CallbackQuery):
                     continue
 
         # Add a "Back" button at the end
-        keyboard.append([InlineKeyboardButton("๏ ʙᴀᴄᴋ ๏", callback_data="back_to_main_menu")])
+        keyboard.append([InlineKeyboardButton("๏ برگشت ๏", callback_data="back_to_main_menu")])
 
         if keyboard:
             reply_markup = InlineKeyboardMarkup(keyboard)
@@ -93,17 +93,16 @@ async def check_sudo_list(client, callback_query: CallbackQuery):
 
 @app.on_callback_query(filters.regex("^back_to_main_menu$"))
 async def back_to_main_menu(client, callback_query: CallbackQuery):
-    keyboard = [[InlineKeyboardButton("๏ ᴠɪᴇᴡ sᴜᴅᴏʟɪsᴛ ๏", callback_data="check_sudo_list")]]
+    keyboard = [[InlineKeyboardButton("๏ لیست کاربران سودو ๏", callback_data="check_sudo_list")]]
     reply_markupes = InlineKeyboardMarkup(keyboard)
-    await callback_query.message.edit_caption(caption="**» ᴄʜᴇᴄᴋ sᴜᴅᴏ ʟɪsᴛ ʙʏ ɢɪᴠᴇɴ ʙᴇʟᴏᴡ ʙᴜᴛᴛᴏɴ.**\n\n**» ɴᴏᴛᴇ:**  ᴏɴʟʏ sᴜᴅᴏ ᴜsᴇʀs ᴄᴀɴ ᴠɪᴇᴡ. \n│ \n└» ᴍᴀᴅᴇ ʙʏ Evo^xᴅ 𓆩🇮🇳𓆪 ", reply_markup=reply_markupes)
+    await callback_query.message.edit_caption(caption="**» بررسی لیست سودو با استفاده از دکمه زیر**\n\n**» توجه:**  فقط کاربران سودو می‌توانند مشاهده کنند \n│ \n└»  ساخته شده توسط ذراگون", reply_markup=reply_markupes)
 
 
 
 
 
 
-
-@app.on_message(filters.command(["delallsudo"], prefixes=["/", "!", "%", ",", "", ".", "@", "#"]) & filters.user(OWNER_ID))
+@app.on_message(filters.command(["delallsudo", "حذف همه سودو"], prefixes=["/", "!", "%", ",", "", ".", "@", "#"]) & filters.user(OWNER_ID))
 @language
 async def del_all_sudo(client, message: Message, _):
     count = len(SUDOERS) - 1  # Exclude the admin from the count
@@ -113,4 +112,4 @@ async def del_all_sudo(client, message: Message, _):
             if removed:
                 SUDOERS.remove(user_id)
                 count -= 1
-    await message.reply_text(f"Removed {count} users from the sudo list.")
+    await message.reply_text(f"می باشد {count} تعداد کاربران حذف شده از ")
