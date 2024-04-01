@@ -9,10 +9,16 @@ from DAXXMUSIC import app
 
 
 # "/gn" command ka handler
-@app.on_message(filters.command("oodnight", prefixes="g"))
-def goodnight_command_handler(client: Client, message: Message):
-    # Randomly decide whether to send a sticker or an emoji
+@app.on_message(filters.regex(r"شب بخیر|شب خوش|شبت بخیر"))
+async def goodnight_command_handler(client: Client, message: Message):
+    # تصمیم گیری تصادفی برای ارسال استیکر یا ایموجی
     send_sticker = random.choice([True, False])
+
+    if send_sticker:
+        client.send_sticker(message.chat.id, get_random_sticker())
+    else:
+        client.send_message(message.chat.id, get_random_emoji())
+
     
     # Send a sticker or an emoji based on the random choice
     if send_sticker:
