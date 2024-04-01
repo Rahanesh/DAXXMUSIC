@@ -6,35 +6,36 @@ from datetime import datetime
 from DAXXMUSIC import app as app
 import requests
 
+# Command to write text on a white page
 @app.on_message(filters.command("write"))
 async def handwrite(_, message: Message):
     if message.reply_to_message:
         text = message.reply_to_message.text
     else:
         text =message.text.split(None, 1)[1]
-    m =await message.reply_text( "Please wait...,\n\nWriting your text...")
+    m =await message.reply_text( "لطفاً صبر کنید...,\n\nدر حال نوشتن متن شما...")
     write = requests.get(f"https://apis.xditya.me/write?text={text}").url
 
     caption = f"""
-sᴜᴄᴇssғᴜʟʟʏ ᴡʀɪᴛᴛᴇɴ ᴛᴇxᴛ 💘
-✨ ᴡʀɪᴛᴛᴇɴ ʙʏ : [Evo^xᴅ 𓆩🇮🇳𓆪](https://t.me/EvoXpro)
-🥀 ʀᴇǫᴜᴇsᴛᴇᴅ ʙʏ : {message.from_user.mention}
+متن با موفقیت نوشته شد 💘
+✨ نوشته شده توسط : [لینکدونی𓆪](https://t.me/fapiqr)
+🥀 درخواست شده توسط : {message.from_user.mention}
 """
     await m.delete()
     await message.reply_photo(photo=write,caption=caption)
 
-mod_name = "WʀɪᴛᴇTᴏᴏʟ"
+mod_name = "ابزار نوشتن"
 
 help = """
 
- ᴡʀɪᴛᴇs ᴛʜᴇ ɢɪᴠᴇɴ ᴛᴇxᴛ ᴏɴ ᴡʜɪᴛᴇ ᴘᴀɢᴇ ᴡɪᴛʜ ᴀ ᴘᴇɴ 🖊
+ این دستور متن داده شده را روی یک صفحه سفید با یک قلم 🖊 می نویسد
 
-❍ /write <ᴛᴇxᴛ> *:* ᴡʀɪᴛᴇs ᴛʜᴇ ɢɪᴠᴇɴ ᴛᴇxᴛ.
+❍ /write <متن> *:* متن داده شده را می نویسد.
  """
-
 
 #----------
 
+# Command to convert date to day
 @app.on_message(filters.command("day"))
 def date_to_day_command(client: Client, message: Message):
     try:
@@ -49,7 +50,7 @@ def date_to_day_command(client: Client, message: Message):
             message.reply_text(f"The day of the week for {input_date} is {day_of_week}.")
 
         else:
-            message.reply_text("Please provide a valid date in the format `/day 1947-08-15` ")
+            message.reply_text("لطفاً یک تاریخ معتبر در قالب `/day 2024-08-15` وارد کنید")
 
     except ValueError as e:
-        message.reply_text(f"Error: {str(e)}")
+        message.reply_text(f"خطا: {str(e)}")
