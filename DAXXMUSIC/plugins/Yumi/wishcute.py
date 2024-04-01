@@ -4,35 +4,35 @@ import random
 import requests
 from DAXXMUSIC import app 
 
-SUPPORT_CHAT = "EvoXpro"
+SUPPORT_CHAT = "+_0XRE7EVJPFkN2I0"
 
-@app.on_message(filters.command("wish"))
+@app.on_message(filters.command("آرزو"))
 async def wish(_, m):
     if len(m.command) < 2:
-        await m.reply("ᴀᴅᴅ ᴡɪꜱʜ ʙᴀʙʏ🥀!")
+        await m.reply("🪆آرزویت را اضافه کن عزیزم🪆")
         return 
 
     api = requests.get("https://nekos.best/api/v2/happy").json()
     url = api["results"][0]['url']
     text = m.text.split(None, 1)[1]
     wish_count = random.randint(1, 100)
-    wish = f"✨ ʜᴇʏ! {m.from_user.first_name}! "
-    wish += f"✨ ʏᴏᴜʀ ᴡɪꜱʜ: {text} "
-    wish += f"✨ ᴘᴏꜱꜱɪʙʟᴇ ᴛᴏ: {wish_count}%"
+    wish = f"✨ سلام! {m.from_user.first_name}! "
+    wish += f"✨ آرزوی تو: {text} "
+    wish += f"✨ ممکن است به: {wish_count}%"
     
     await app.send_animation(
         chat_id=m.chat.id,
         animation=url,
         caption=wish,
         reply_markup=InlineKeyboardMarkup(
-            [[InlineKeyboardButton("ꜱᴜᴘᴘᴏʀᴛ", url=f"https://t.me/{SUPPORT_CHAT}")]])
+            [[InlineKeyboardButton("🦋گروه پشتیبانی🦋", url=f"https://t.me/{SUPPORT_CHAT}")]])
     )
             
     
-BUTTON = [[InlineKeyboardButton("ꜱᴜᴘᴘᴏʀᴛ", url=f"https://t.me/{SUPPORT_CHAT}")]]
-CUTIE = "https://64.media.tumblr.com/d701f53eb5681e87a957a547980371d2/tumblr_nbjmdrQyje1qa94xto1_500.gif"
+BUTTON = [[InlineKeyboardButton("🦋گروه پشتیبانی🦋", url=f"https://t.me/{SUPPORT_CHAT}")]]
+CUTIE = "https://t.me/rahaneshsource/118"
 
-@app.on_message(filters.command("cute"))
+@app.on_message(filters.command("جذاب"))
 async def cute(_, message):
     if not message.reply_to_message:
         user_id = message.from_user.id
@@ -43,7 +43,7 @@ async def cute(_, message):
 
     mention = f"[{user_name}](tg://user?id={str(user_id)})"
     mm = random.randint(1, 100)
-    CUTE = f"🍑 {mention} {mm}% ᴄᴜᴛᴇ ʙᴀʙʏ🥀"
+    CUTE = f"🍑 {mention} {mm}% جذاب بچه🥰"
 
     await app.send_document(
         chat_id=message.chat.id,
@@ -54,10 +54,9 @@ async def cute(_, message):
     )
     
 help_text = """
-» ᴡʜᴀᴛ ɪꜱ ᴛʜɪꜱ (ᴡɪꜱʜ):
-ʏᴏᴜ ʜᴀᴠɪɴɢ ᴀɴʏ ᴋɪɴᴅ ᴏꜰ 
-(ᴡɪꜱʜᴇꜱ) ʏᴏᴜ ᴄᴀɴ ᴜꜱɪɴɢ ᴛʜɪꜱ ʙᴏᴛ ᴛᴏ ʜᴏᴡ ᴘᴏꜱꜱɪʙʟᴇ ᴛᴏ ʏᴏᴜʀ ᴡɪꜱʜ!
-ᴇxᴀᴍᴘʟᴇ:» /wish : ɪ ᴡᴀɴᴛ ᴄʟᴀꜱꜱ ᴛᴏᴘᴘᴇʀ 
-» /wish : ɪ ᴡᴀɴᴛ ᴀ ɴᴇᴡ ɪᴘʜᴏɴᴇ 
-» /cute : ʜᴏᴡ ᴍᴜᴄʜ ɪ ᴀᴍ ᴄᴜᴛᴇ 
+» 🔮چیستی این (آروز)🔮
+🪄دراینجا شما هر نوع درخواستی را میتوانید با استفاده از این ربات برآورده کنید🪅!
+مثال: /wish : من می‌خواهم بهترین در کلاس باشم
+» /wish : من یک آیفون جدید می‌خواهم
+» /cute : چقدر من خوشگل هستم 
 """
