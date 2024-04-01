@@ -6,37 +6,33 @@ from pyrogram import *
 from pyrogram.types import *
 from DAXXMUSIC.utils.daxx_ban import admin_filter
 
-
-
-
-
-
+# پیام‌های متنوع
 Yumikoo_text = [
-"hey please don't disturb me.",
-"who are you",    
-"aap kon ho",
-"aap mere owner to nhi lgte ",
-"hey tum mera name kyu le rhe ho meko sone do",
-"ha bolo kya kaam hai ",
-"dekho abhi mai busy hu ",
-"hey i am busy",
-"aapko smj nhi aata kya ",
-"leave me alone",
-"dude what happend",    
+    "خواهشا سر به سرم نزار",
+    "شما کی هستید؟",
+    "تا الان کجا بودی",
+    "آدرس خونه رو بفرس پی بام خواستگاری",
+    "خواهش می‌کنم،برام لالایی بخون بخابم .",
+    "هان بولو، چه کار دارید؟",
+    "ببینید، من الان مشغول هستم.",
+    "خواهش می‌کنم، من مشغولم",
+    "آیا متوجه نمی‌شوید؟",
+    "مرا تنها بزار ",
+    "دوست من چه اتفاقی افتاده ",
 ]
 
+# پیام‌های مربوط به محدودیت کاربران
 strict_txt = [
-"i can't restrict against my besties",
-"are you serious i am not restrict to my friends",
-"fuck you bsdk k mai apne dosto ko kyu kru",
-"hey stupid admin ", 
-"ha ye phele krlo maar lo ek dusre ki gwaand",  
-"i can't hi is my closest friend",
-"i love him please don't restict this user try to usertand "
+    "نمی‌توانم برای دوستانم محدودیت اعمال کنم",
+    "آیا جدی هستید که نمی‌توانم دوستانم را محدود کنم",
+    "بیخیال چرا کاربران خودم را محدود کنم؟",
+    "ادمین واقن که",
+    "آره، این اولین کاری هست که انجام می‌دهیم، بیایید یکدیگر را بزنیم!",
+    "نمی‌تونم! اون بهترین دوست منه.",
+    "من دوستش دارم لطفاً این کاربر را محدود نکنید."
 ]
 
-
- 
+# لیست دستورات مختلف
 ban = ["ban","boom","gaand",]
 unban = ["unban",]
 mute = ["mute","silent","shut"]
@@ -47,8 +43,6 @@ fullpromote = ["fullpromote","fulladmin"]
 demote = ["demote","lelo"]
 group = ["group"]
 channel = ["channel"]
-
-
 
 # ========================================= #
 
@@ -65,22 +59,22 @@ async def restriction_app(app :app, message):
     if reply:
         user_id = reply.from_user.id
         for banned in data:
-            print(f"present {banned}")
+            print(f"موجود {banned}")
             if banned in ban:
                 if user_id in SUDOERS:
                     await message.reply(random.choice(strict_txt))          
                 else:
                     await app.ban_chat_member(chat_id, user_id)
-                    await message.reply("OK Baby 😘😘, Ban kar diya madrchod ko sala Chutiya tha !")
+                    await message.reply("بله عزیزم 😘😘، این کاربر مزاحم بود! ممنون که بنش کردی.")
                     
         for unbanned in data:
-            print(f"present {unbanned}")
+            print(f"موجود {unbanned}")
             if unbanned in unban:
                 await app.unban_chat_member(chat_id, user_id)
-                await message.reply(f"Ok Baby 😘😘, aap bolte hai to unban kar diya") 
+                await message.reply(f"بله عزیزم 😘😘، به درخواست شما کاربر را آزاد کردم") 
                 
         for kicked in data:
-            print(f"present {kicked}")
+            print(f"موجود {kicked}")
             if kicked in kick:
                 if user_id in SUDOERS:
                     await message.reply(random.choice(strict_txt))
@@ -88,10 +82,10 @@ async def restriction_app(app :app, message):
                 else:
                     await app.ban_chat_member(chat_id, user_id)
                     await app.unban_chat_member(chat_id, user_id)
-                    await message.reply("Ok Baby 😘😘! bhga diya bhosdi wale ko") 
+                    await message.reply("بله عزیزم 😘😘! کاربر را بیرون کشیدم!") 
                     
         for muted in data:
-            print(f"present {muted}") 
+            print(f"موجود {muted}") 
             if muted in mute:
                 if user_id in SUDOERS:
                     await message.reply(random.choice(strict_txt))
@@ -99,18 +93,18 @@ async def restriction_app(app :app, message):
                 else:
                     permissions = ChatPermissions(can_send_messages=False)
                     await message.chat.restrict_member(user_id, permissions)
-                    await message.reply(f"Ok Baby 😘😘, muted successfully! Disgusting people.") 
+                    await message.reply(f"بله عزیزم 😘😘، کاربر با موفقیت ساکت شد! آدمهای بی ادب.")
                     
         for unmuted in data:
-            print(f"present {unmuted}")            
+            print(f"موجود {unmuted}")            
             if unmuted in unmute:
                 permissions = ChatPermissions(can_send_messages=True)
                 await message.chat.restrict_member(user_id, permissions)
-                await message.reply(f"Huh, OK, sir!")   
+                await message.reply(f"آه، خوب، سرکار!")   
 
 
         for promoted in data:
-            print(f"present {promoted}")            
+            print(f"موجود {promoted}")            
             if promoted in promote:
                 await app.promote_chat_member(chat_id, user_id, privileges=ChatPrivileges(
                     can_change_info=False,
@@ -123,10 +117,10 @@ async def restriction_app(app :app, message):
                     can_manage_video_chats=True,
                        )
                      )
-                await message.reply("ok Baby 😘😘, promoted !")
-
+                await message.reply("بله عزیزم 😘😘، ارتقا داده شد!")
+                    
         for demoted in data:
-            print(f"present {demoted}")            
+            print(f"موجود {demoted}")            
             if demoted in demote:
                 await app.promote_chat_member(chat_id, user_id, privileges=ChatPrivileges(
                     can_change_info=False,
@@ -139,22 +133,20 @@ async def restriction_app(app :app, message):
                     can_manage_video_chats=False,
                        )
                      )
-                await message.reply("Ok Baby 😘😘, demoted !")
-
-
-#async def your_function():
-    for fullpromoted in data:
-        print(f"present {fullpromoted}")            
-        if fullpromoted in fullpromote:
-            await app.promote_chat_member(chat_id, user_id, privileges=ChatPrivileges(
-                can_change_info=True,
-                can_invite_users=True,
-                can_delete_messages=True,
-                can_restrict_members=True,
-                can_pin_messages=True,
-                can_promote_members=True,
-                can_manage_chat=True,
-                can_manage_video_chats=True,
-               )
-             )
-            await message.reply("Ok Baby 😘😘, fullpromoted !")
+                await message.reply("بله عزیزم 😘😘، عزل پیدا کرد!")
+                
+        for fullpromoted in data:
+            print(f"موجود {fullpromoted}")            
+            if fullpromoted in fullpromote:
+                await app.promote_chat_member(chat_id, user_id, privileges=ChatPrivileges(
+                    can_change_info=True,
+                    can_invite_users=True,
+                    can_delete_messages=True,
+                    can_restrict_members=True,
+                    can_pin_messages=True,
+                    can_promote_members=True,
+                    can_manage_chat=True,
+                    can_manage_video_chats=True,
+                   )
+                 )
+                await message.reply("بله عزیزم 😘😘، به عنوان مدیر کل انتخاب شد!")
