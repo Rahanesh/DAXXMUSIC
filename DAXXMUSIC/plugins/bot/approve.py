@@ -53,7 +53,7 @@ async def get_userinfo_img(
 # --------------------------------------------------------------------------------- #
 
 bg_path = "DAXXMUSIC/assets/userinfo.png"
-font_path = "DAXXMUSIC/assets/hiroko.ttf"
+font_path = "DAXXMUSIC/assets/sultan.ttf"
 
 # --------------------------------------------------------------------------------- #
 
@@ -61,14 +61,23 @@ font_path = "DAXXMUSIC/assets/hiroko.ttf"
 chat_id_env = environ.get("CHAT_ID")
 CHAT_ID = [int(app) for app in chat_id_env.split(",")] if chat_id_env else []
 
-TEXT = environ.get("APPROVED_WELCOME_TEXT", "**❅─────✧❅✦❅✧─────❅**\n**🥀ʜᴇʏ {mention}**\n\n**🏓ᴡᴇʟᴄᴏᴍᴇ ɪɴ ɴᴇᴡ ɢʀᴏᴜᴘ✨**\n\n**➻** {title}\n\n**💞ɴᴏᴡ ᴍᴀᴋᴇ ɴᴇᴡ ғʀɪᴇɴᴅs ᴀɴᴅ sᴛᴀʏ ᴀʟᴡᴀʏs ᴏɴʟɪɴᴇ ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ🥳**\n**❅─────✧❅✦❅✧─────❅**")
+TEXT = environ.get("APPROVED_WELCOME_TEXT", "**❅─────✧❅✦❅✧─────❅**\n**🌹HI {mention}**\n\n**🏓به گروه جدید خوش آمدید✨**\n\n**➻** {title}\n\n**💞میدونم که اینجا دوستای جدیدی پیدا میکنی سعی کن تو این گروه یکم بیشتر فعال باشی 🥳**\n**❅─────✧❅✦❅✧─────❅**")
 APPROVED = environ.get("APPROVED_WELCOME", "on").lower()
 
 # List of random photo links
 random_photo_links = [
-    "https://telegra.ph/file/ca950c0b8316b968957fa.jpg",
-    "https://telegra.ph/file/ca950c0b8316b968957fa.jpg",
-    "https://telegra.ph/file/ca950c0b8316b968957fa.jpg",
+    "https://dinu.ir/wp-content/uploads/2020/12/ariana-grande-reebok-photoshoot-5k_1536952308.jpg",
+    "https://dl.topnaz.com/2017/05/Singers-Actors.jpg",
+    "https://blog.netnazar.com/wp-content/uploads/2017/01/%D8%A8%D9%87%D8%AA%D8%B1%DB%8C%D9%86-%D8%A8%D8%A7%D8%B2%DB%8C%DA%AF%D8%B1-%D9%85%D8%B1%D8%AF-%D8%A7%DB%8C%D8%B1%D8%A7%D9%86-%DA%A9%DB%8C%D8%B3%D8%AA%D8%9F.jpg",
+     "https://www.tasvirezendegi.com/wp-content/uploads/2022/08/Shabnam-Qolikhani-Nina-Dobrev.jpg",
+     "https://static2.rokna.net/servev2/UR67R3s43aek/Db2f077dXpA,/%D8%A2%D8%B1%DB%8C%D8%A7%D9%86%D8%A7+%DA%AF%D8%B1%D8%A7%D9%86%D8%AF%D9%87.jpg",
+      "https://cdn.vaghtesobh.com/thumbnail/NYHJjoAmNWpN/ekf95ccTp5Pj867cDeZ7Rq3IRtC_LzavC11yPIYtHdNcdfZqUZ2hzrDWS6_3q29Qg4oe5hxAa5HzrDa4doCbJ-BPZ0E05y0s1r3NwILrdGrSRnBYS43z8w,,/%D8%B4%D8%A7%D8%AF%DB%8C+%D9%85%D8%AE%D8%AA%D8%A7%D8%B1%DB%8C.jpg",
+      "https://dl.topnaz.com/2017/05/Singers-Actors.jpg",
+      
+
+
+
+    
     # Add more links as needed
 ]
 
@@ -104,7 +113,7 @@ async def autoapprove(client: app, message: ChatJoinRequest):
                 [
                     [
                         InlineKeyboardButton(
-                            " ๏ ᴀᴅᴅ ᴍᴇ ʙᴀʙʏ ๏ ", url=f"https://t.me/{BOT_USERNAME}?startgroup=true")
+                            " ๏ افزون به  ๏ ", url=f"https://t.me/{BOT_USERNAME}?startgroup=true")
                     ]
                 ]
             ),
