@@ -1,3 +1,11 @@
+import os
+import time
+from asyncio import sleep
+from pyrogram import Client, filters
+from pyrogram import enums, filters
+
+from DAXXMUSIC import app
+
 @app.on_message(~filters.private & filters.command(["آمار گروه", "groupdata", "آمار گپ", "گپ"]))
 async def instatus(app, message):
     start_time = time.perf_counter()
