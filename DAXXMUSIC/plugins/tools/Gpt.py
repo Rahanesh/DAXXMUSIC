@@ -7,7 +7,7 @@ from config import BOT_USERNAME
 from pyrogram.enums import ChatAction, ParseMode
 from pyrogram import filters
 
-@app.on_message(filters.command(["chatgpt","ai","ask","gpt","solve"],  prefixes=["+", ".", "/", "-", "", "$","#","&"]))
+@app.on_message(filters.command(["chatgpt","بات","ask","gpt","هوش"],  prefixes=["+", ".", "/", "-", "", "$","#","&"]))
 async def chat_gpt(bot, message):
     try:
         start_time = time.time()
@@ -15,7 +15,7 @@ async def chat_gpt(bot, message):
 
         if len(message.command) < 2:
             await message.reply_text(
-                "Example:\n\n/chatgpt Where is TajMahal?"
+                "نمونه:\n\n/هوش میدونی دراگون به چی میگند؟"
             )
         else:
             a = message.text.split(' ', 1)[1]
@@ -28,13 +28,13 @@ async def chat_gpt(bot, message):
                     end_time = time.time()
                     telegram_ping = str(round((end_time - start_time) * 1000, 3)) + " ms"
                     await message.reply_text(
-                        f" {x}      ᴀɴsᴡᴇʀɪɴɢ ʙʏ ➛  @NexikoBot",
+                        f" {x}      کانال لینکدونی➛  @fapiqr",
                         parse_mode=ParseMode.MARKDOWN
                     )
                 else:
-                    await message.reply_text("No 'results' key found in the response.")
+                    await message.reply_text("هیچ کلید 'نتیجه' در پاسخ یافت نشد")
             except KeyError:
                 # Handle any other KeyError that might occur
-                await message.reply_text("Error accessing the response.")
+                await message.reply_text("خطا در دسترسی به پاسخ.")
     except Exception as e:
-        await message.reply_text(f"**á´‡Ê€Ê€á´Ê€: {e} ")
+        await message.reply_text(f"**گشتم نبود نگرد که نیست {e} ")
