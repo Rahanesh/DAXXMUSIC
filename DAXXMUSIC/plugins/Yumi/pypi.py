@@ -32,18 +32,18 @@ def pypi_info_command(client, message):
         
         if pypi_info:
             # Creating a message with PyPI information
-            info_message = f"ᴘᴀᴄᴋᴀɢᴇ ɴᴀᴍᴇ ➪ {pypi_info['info']['name']}\n\n" \
-                           f"Lᴀᴛᴇsᴛ ᴠɪʀsɪᴏɴ➪ {pypi_info['info']['version']}\n\n" \
-                           f"Dᴇsᴄʀɪᴘᴛɪᴏɴ➪ {pypi_info['info']['summary']}\n\n" \
-                           f"ᴘʀᴏJᴇᴄᴛ ᴜʀʟ➪ {pypi_info['info']['project_urls']['Homepage']}"
+            info_message = f"نام پکیج ➪ {pypi_info['info']['name']}\n\n" \
+                           f"آخرین ورژن➪ {pypi_info['info']['version']}\n\n" \
+                           f"توضیحات➪ {pypi_info['info']['summary']}\n\n" \
+                           f"دریافت پروژه➪ {pypi_info['info']['project_urls']['Homepage']}"
             
             # Sending the PyPI information back to the user
             client.send_message(message.chat.id, info_message)
         
         else:
             # Handling the case where information retrieval failed
-            client.send_message(message.chat.id, "Failed to fetch information from PyPI.")
+            client.send_message(message.chat.id, "دریافت اطلاعات از PyPI انجام نشد.")
     
     except IndexError:
 
-        client.send_message(message.chat.id, "Please provide a package name after the /pypi command.")
+        client.send_message(message.chat.id, "لطفاً پس از دستور pypi/ نام بسته را وارد کنید.")
