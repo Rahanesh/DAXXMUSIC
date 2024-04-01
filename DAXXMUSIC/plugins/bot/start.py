@@ -29,14 +29,20 @@ from strings import get_string
 #--------------------------
 
 NEXI_VID = [
-"https://telegra.ph/file/1a3c152717eb9d2e94dc2.mp4",
-"https://graph.org/file/ba7699c28dab379b518ca.mp4",
-"https://graph.org/file/83ebf52e8bbf138620de7.mp4",
-"https://graph.org/file/82fd67aa56eb1b299e08d.mp4",
-"https://graph.org/file/318eac81e3d4667edcb77.mp4",
-"https://graph.org/file/7c1aa59649fbf3ab422da.mp4",
-"https://graph.org/file/2a7f857f31b32766ac6fc.mp4",
-
+"https://t.me/rahaneshsource/143",
+"https://t.me/rahaneshsource/141",
+"https://t.me/rahaneshsource/140",
+"https://t.me/rahaneshsource/139",
+"https://t.me/rahaneshsource/138",
+"https://t.me/rahaneshsource/137",
+"https://t.me/rahaneshsource/136",
+"https://t.me/rahaneshsource/135",
+"https://t.me/rahaneshsource/134",
+"https://t.me/rahaneshsource/133",
+"https://t.me/rahaneshsource/132",
+"https://t.me/rahaneshsource/131",
+"https://t.me/rahaneshsource/130",
+    
 ]
 
 
@@ -59,7 +65,7 @@ async def start_pm(client, message: Message, _):
             if await is_on_off(2):
                 return await app.send_message(
                     chat_id=config.LOGGER_ID,
-                    text=f"{message.from_user.mention} ᴊᴜsᴛ sᴛᴀʀᴛᴇᴅ ᴛʜᴇ ʙᴏᴛ ᴛᴏ ᴄʜᴇᴄᴋ <b>sᴜᴅᴏʟɪsᴛ</b>.\n\n<b>ᴜsᴇʀ ɪᴅ :</b> <code>{message.from_user.id}</code>\n<b>ᴜsᴇʀɴᴀᴍᴇ :</b> @{message.from_user.username}",
+                    text=f"{message.from_user.mention} فقط شروع به بررسی <b>لیست سودو</b> کرد.\n\n<b>شناسه کاربر:</b> <code>{message.from_user.id}</code>\n<b>نام کاربری:</b> @{message.from_user.username}",
                 )
             return
         if name[0:3] == "inf":
@@ -97,7 +103,7 @@ async def start_pm(client, message: Message, _):
             if await is_on_off(2):
                 return await app.send_message(
                     chat_id=config.LOGGER_ID,
-                    text=f"{message.from_user.mention} ᴊᴜsᴛ sᴛᴀʀᴛᴇᴅ ᴛʜᴇ ʙᴏᴛ ᴛᴏ ᴄʜᴇᴄᴋ <b>ᴛʀᴀᴄᴋ ɪɴғᴏʀᴍᴀᴛɪᴏɴ</b>.\n\n<b>ᴜsᴇʀ ɪᴅ :</b> <code>{message.from_user.id}</code>\n<b>ᴜsᴇʀɴᴀᴍᴇ :</b> @{message.from_user.username}",
+                    text=f"{message.from_user.mention} فقط شروع به بررسی <b>اطلاعات تِرک</b> کرد.\n\n<b>شناسه کاربر:</b> <code>{message.from_user.id}</code>\n<b>نام کاربری:</b> @{message.from_user.username}",
                 )
     else:
         out = private_panel(_)
@@ -109,7 +115,7 @@ async def start_pm(client, message: Message, _):
         if await is_on_off(2):
             return await app.send_message(
                 chat_id=config.LOGGER_ID,
-                text=f"{message.from_user.mention} ᴊᴜsᴛ sᴛᴀʀᴛᴇᴅ ᴛʜᴇ ʙᴏᴛ.\n\n<b>ᴜsᴇʀ ɪᴅ :</b> <code>{message.from_user.id}</code>\n<b>ᴜsᴇʀɴᴀᴍᴇ :</b> @{message.from_user.username}",
+                text=f"{message.from_user.mention} فقط شروع به بررسی <b>لیست سودو</b> کرد.\n\n<b>شناسه کاربر:</b> <code>{message.from_user.id}</code>\n<b>نام کاربری:</b> @{message.from_user.username}",
             )
 
 
