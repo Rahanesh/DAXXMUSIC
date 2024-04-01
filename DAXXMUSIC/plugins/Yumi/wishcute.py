@@ -6,7 +6,8 @@ from DAXXMUSIC import app
 
 SUPPORT_CHAT = "+_0XRE7EVJPFkN2I0"
 
-@app.on_message(filters.command("آرزو"))
+# Command to make a wish
+@app.on_message(filters.command(["آرزو", "wish"]))
 async def wish(_, m):
     if len(m.command) < 2:
         await m.reply("🪆آرزویت را اضافه کن عزیزم🪆")
@@ -32,7 +33,8 @@ async def wish(_, m):
 BUTTON = [[InlineKeyboardButton("🦋گروه پشتیبانی🦋", url=f"https://t.me/{SUPPORT_CHAT}")]]
 CUTIE = "https://t.me/rahaneshsource/118"
 
-@app.on_message(filters.command("جذاب"))
+# Command to send a cute image
+@app.on_message(filters.command(["جذاب", "cute"]))
 async def cute(_, message):
     if not message.reply_to_message:
         user_id = message.from_user.id
@@ -56,7 +58,7 @@ async def cute(_, message):
 help_text = """
 » 🔮چیستی این (آروز)🔮
 🪄دراینجا شما هر نوع درخواستی را میتوانید با استفاده از این ربات برآورده کنید🪅!
-مثال: /wish : من می‌خواهم بهترین در کلاس باشم
+مثال: /آرزو : من می‌خواهم بهترین در کلاس باشم
 » /wish : من یک آیفون جدید می‌خواهم
 » /cute : چقدر من خوشگل هستم 
 """
