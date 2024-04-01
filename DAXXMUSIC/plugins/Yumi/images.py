@@ -4,26 +4,26 @@ from DAXXMUSIC import app
 from pyrogram import filters
 from pyrogram.types import InputMediaPhoto
 
-@app.on_message(filters.command(["image"], prefixes=["/", "!", "%", ",", "", ".", "@", "#"]))
+@app.on_message(filters.command(["عکس"], prefixes=["/", "!", "%", ",", "", ".", "@", "#"]))
 async def pinterest(_, message):
      chat_id = message.chat.id
 
      try:
        query= message.text.split(None,1)[1]
      except:
-         return await message.reply("**ɢɪᴠᴇ ɪᴍᴀɢᴇ ɴᴀᴍᴇ ғᴏʀ sᴇᴀʀᴄʜ 🔍**")
+         return await message.reply("**برای جستجوی تصویر، نام تصویر را وارد کنید 🔍**")
 
      images = get(f"https://pinterest-api-one.vercel.app/?q={query}").json()
 
      media_group = []
      count = 0
 
-     msg = await message.reply(f"sᴄʀᴀᴘɪɴɢ ɪᴍᴀɢᴇs ғʀᴏᴍ ᴘɪɴᴛᴇʀᴇᴛs...")
+     msg = await message.reply(f"در حال دریافت تصاویر از پینترست...")
      for url in images["images"][:6]:
                   
           media_group.append(InputMediaPhoto(media=url))
           count += 1
-          await msg.edit(f"=> ᴏᴡᴏ sᴄʀᴀᴘᴇᴅ ɪᴍᴀɢᴇs {count}")
+          await msg.edit(f"=> تعداد تصاویر یافته شده: {count}")
 
      try:
         
@@ -35,4 +35,4 @@ async def pinterest(_, message):
 
      except Exception as e:
            await msg.delete()
-           return await message.reply(f"ᴇʀʀᴏʀ : {e}")
+           return await message.reply(f"خطا: {e}")
